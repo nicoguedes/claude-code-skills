@@ -34,11 +34,18 @@ bundle supporting files (reference docs, templates, scripts) alongside its `SKIL
 | [`plan-waves`](skills/plan-waves/SKILL.md) | Decomposes a PRD into small, single-concern tasks with an explicit dependency graph grouped into parallel "waves"; files one Issue per task linked to the PRD. | [spec-driven-starter](https://github.com/nicoguedes/spec-driven-starter) |
 | [`implement-feature`](skills/implement-feature/SKILL.md) | Picks up a single task Issue, branches `feat/<slug>`, implements it with the right test levels, and opens a PR that `Closes #<n>` — never pushes to main, never merges. | [spec-driven-starter](https://github.com/nicoguedes/spec-driven-starter) |
 | [`review-pr`](skills/review-pr/SKILL.md) | Reviews an open PR against the Constitution and the linked Issue's acceptance criteria (scope, test levels, UX states, no secrets); approves or requests changes, never merges unprompted. | [spec-driven-starter](https://github.com/nicoguedes/spec-driven-starter) |
+| [`fix-bug`](skills/fix-bug/SKILL.md) | Fixes a reported bug the disciplined way: reproduce it, capture it in a **failing test first**, make the minimal root-cause fix so the test passes, confirm no regressions, and open a small PR that `Closes #<n>` — never pushes to main, never merges. | [spec-driven-starter](https://github.com/nicoguedes/spec-driven-starter) |
+| [`write-tests`](skills/write-tests/SKILL.md) | Backfills the testing pyramid for under-tested code: fast unit tests for pure logic, integration tests against real collaborators (e.g. ephemeral containers), a thin e2e for the critical path — named by the stack's convention, changing no behavior. | [spec-driven-starter](https://github.com/nicoguedes/spec-driven-starter) |
 | [`new-website`](skills/new-website/SKILL.md) | Scaffolds a new static site in a sites monorepo: `scripts/new-site.mjs`, i18n slug-mapping, SEO (metadata, sitemap, robots, hreflang, OG), env-gated AdSense Auto Ads, dark mode, and Cloudflare Pages deploy wiring — driven from a Site PRD. Bundles a per-site Definition-of-Done checklist. | [spec-driven-sites](https://github.com/nicoguedes/spec-driven-sites) |
 | [`new-tool`](skills/new-tool/SKILL.md) | Adds a new tool/page to an existing site: one component under `app/components/tools/`, registered with per-locale slugs in the i18n config, plus localized copy + SEO, wired into the static params. | [spec-driven-sites](https://github.com/nicoguedes/spec-driven-sites) |
+| [`add-locale`](skills/add-locale/SKILL.md) | Adds a new language to an existing site: registers the locale in `app/i18n/config.ts`, adds the full translation set + per-locale tool slugs in `dictionaries.ts`, and verifies `generateStaticParams`/sitemap/hreflang and the static export all pick it up. | [spec-driven-sites](https://github.com/nicoguedes/spec-driven-sites) |
+| [`worktree-fanout`](skills/worktree-fanout/SKILL.md) | Orchestrates a whole wave of independent task Issues as parallel agents: computes which tasks have all deps merged, creates one `git worktree` + Developer agent per task, gates the next wave on review+merge of the current one, and cleans up worktrees after merge. | [claude-code-kit](https://github.com/nicoguedes/claude-code-kit) |
 
-The first four are the spec-driven **lifecycle** — `specify` → `plan-waves` →
-`implement-feature` → `review-pr`. The last two are the sites-factory authoring loop.
+The first six are the spec-driven **lifecycle** — `specify` → `plan-waves` →
+`implement-feature` → `review-pr`, with `fix-bug` and `write-tests` as its
+defect-fixing and test-backfilling loops. The next three (`new-website`, `new-tool`,
+`add-locale`) are the sites-factory authoring loop. `worktree-fanout` is the
+orchestration layer that fans a wave of task Issues out across parallel worktrees.
 
 ## Installing a skill
 
