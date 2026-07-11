@@ -36,6 +36,7 @@ bundle supporting files (reference docs, templates, scripts) alongside its `SKIL
 | [`review-pr`](skills/review-pr/SKILL.md) | Reviews an open PR against the Constitution and the linked Issue's acceptance criteria (scope, test levels, UX states, no secrets); approves or requests changes, never merges unprompted. | [spec-driven-starter](https://github.com/nicoguedes/spec-driven-starter) |
 | [`fix-bug`](skills/fix-bug/SKILL.md) | Fixes a reported bug the disciplined way: reproduce it, capture it in a **failing test first**, make the minimal root-cause fix so the test passes, confirm no regressions, and open a small PR that `Closes #<n>` — never pushes to main, never merges. | [spec-driven-starter](https://github.com/nicoguedes/spec-driven-starter) |
 | [`write-tests`](skills/write-tests/SKILL.md) | Backfills the testing pyramid for under-tested code: fast unit tests for pure logic, integration tests against real collaborators (e.g. ephemeral containers), a thin e2e for the critical path — named by the stack's convention, changing no behavior. | [spec-driven-starter](https://github.com/nicoguedes/spec-driven-starter) |
+| [`new-fullstack-app`](skills/new-fullstack-app/SKILL.md) | Scaffolds a new full-stack product web app the way `viracancao` and `catalogo-dora` were built: a Next.js 14 App Router + TypeScript + Tailwind app in `web/`, a Supabase Postgres/Storage/RLS backend with versioned migrations, email-allowlist auth, prices-in-cents money, mobile-first PT-BR UI, env-gated integrations, and Vercel deploy via a push-to-main GitHub Action — driven from a spec. Bundles the shared recipe + a Definition-of-Done checklist. | viracancao · catalogo-dora |
 | [`new-website`](skills/new-website/SKILL.md) | Scaffolds a new static site in a sites monorepo: `scripts/new-site.mjs`, i18n slug-mapping, SEO (metadata, sitemap, robots, hreflang, OG), env-gated AdSense Auto Ads, dark mode, and Cloudflare Pages deploy wiring — driven from a Site PRD. Bundles a per-site Definition-of-Done checklist. | [spec-driven-sites](https://github.com/nicoguedes/spec-driven-sites) |
 | [`new-tool`](skills/new-tool/SKILL.md) | Adds a new tool/page to an existing site: one component under `app/components/tools/`, registered with per-locale slugs in the i18n config, plus localized copy + SEO, wired into the static params. | [spec-driven-sites](https://github.com/nicoguedes/spec-driven-sites) |
 | [`add-locale`](skills/add-locale/SKILL.md) | Adds a new language to an existing site: registers the locale in `app/i18n/config.ts`, adds the full translation set + per-locale tool slugs in `dictionaries.ts`, and verifies `generateStaticParams`/sitemap/hreflang and the static export all pick it up. | [spec-driven-sites](https://github.com/nicoguedes/spec-driven-sites) |
@@ -43,7 +44,9 @@ bundle supporting files (reference docs, templates, scripts) alongside its `SKIL
 
 The first six are the spec-driven **lifecycle** — `specify` → `plan-waves` →
 `implement-feature` → `review-pr`, with `fix-bug` and `write-tests` as its
-defect-fixing and test-backfilling loops. The next three (`new-website`, `new-tool`,
+defect-fixing and test-backfilling loops. `new-fullstack-app` scaffolds a whole new
+product web app (Next.js + Supabase + Vercel) from the recipe behind `viracancao` and
+`catalogo-dora`. The next three (`new-website`, `new-tool`,
 `add-locale`) are the sites-factory authoring loop. `worktree-fanout` is the
 orchestration layer that fans a wave of task Issues out across parallel worktrees.
 
